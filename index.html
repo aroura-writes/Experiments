@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects Directory</title>
-    <!-- Elegant, clean fonts -->
+    <!-- Importing your typography style sheets -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Base styles matching your existing theme color palette */
+        /* Exact color palette matching your mobile theme mockup */
         body {
             background-color: #120e36;
             color: #d1d5db;
@@ -21,7 +21,7 @@
             margin: 0 auto;
         }
 
-        /* Gold subtitle text tracker at the very top */
+        /* Gold visual star track subtext */
         .subtitle {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.75rem;
@@ -36,7 +36,7 @@
             gap: 6px;
         }
 
-        /* Main Serif Heading */
+        /* Serif header display match */
         h1 {
             font-family: 'Cinzel', serif;
             font-size: 2.2rem;
@@ -48,7 +48,7 @@
             letter-spacing: 1px;
         }
 
-        /* Publication date metadata subtext */
+        /* Explanatory menu description */
         .meta {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.8rem;
@@ -57,14 +57,14 @@
             margin-bottom: 40px;
         }
 
-        /* Dynamic Pages Container */
+        /* List structure layout */
         ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
 
-        /* Styled list items mimicking your container blocks */
+        /* Elegant design container block for links */
         li {
             margin-bottom: 20px;
             background: rgba(255, 255, 255, 0.04);
@@ -79,7 +79,7 @@
             transform: translateY(-2px);
         }
 
-        /* Clickable links matching your distinctive light violet text color */
+        /* Soft purple link font settings */
         a {
             display: flex;
             align-items: center;
@@ -91,19 +91,10 @@
             letter-spacing: 1px;
             font-weight: 600;
         }
-
-        /* Small structural styles for loading and error flags */
-        .status-msg {
-            text-align: center;
-            font-style: italic;
-            color: #8b8ea9;
-            padding: 20px;
-        }
     </style>
 </head>
 <body>
 
-    <!-- Generic project headings (Change these to whatever you want) -->
     <div class="subtitle">
         <span>✦</span> DIGITAL LABORATORY <span>✦</span>
     </div>
@@ -112,55 +103,15 @@
     
     <div class="meta">Select a project file from the directory index below:</div>
     
-    <!-- Dynamic directory target container -->
-    <ul id="pages-list">
-        <li class="status-msg">Scanning your repository files...</li>
+    <!-- Static Links Directory: Simply update this section manually when expanding your files -->
+    <ul>
+        <li>
+            <a href="moon.html">Moon</a>
+        </li>
+        <li>
+            <a href="index2.html">Index 2</a>
+        </li>
     </ul>
 
-    <script>
-        // Configured directly to target your unique Github username and repo name
-        const username = 'aroura-writes';
-const repo = 'aroura-writes.github.io'; 
-
-        async function fetchPages() {
-            const listElement = document.getElementById('pages-list');
-            try {
-                const response = await fetch(`https://github.com{username}/${repo}/contents/`);
-                const files = await response.json();
-
-                // Clear out default loading state text
-                listElement.innerHTML = '';
-
-                // Filters out non-html pages and prevents the directory page itself from creating infinite loop links
-                const htmlFiles = files.filter(file => file.name.endsWith('.html') && file.name !== 'index.html');
-
-                if (htmlFiles.length === 0) {
-                    listElement.innerHTML = '<li class="status-msg">No active experiment files found in directory.</li>';
-                    return;
-                }
-
-                // Generates styled links inside list tags
-                htmlFiles.forEach(file => {
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    
-                    a.href = file.name; 
-                    
-                    // Format file strings elegantly for clean titles (e.g., 'moon.html' to 'MOON')
-                    const polishedName = file.name.replace('.html', '').replace(/[-_]/g, ' ');
-                    a.textContent = polishedName.toUpperCase(); 
-                    
-                    li.appendChild(a);
-                    listElement.appendChild(li);
-                });
-
-            } catch (error) {
-                console.error('Error auto-generating index list:', error);
-                listElement.innerHTML = '<li class="status-msg">Unable to render index directory dynamically.</li>';
-            }
-        }
-
-        fetchPages();
-    </script>
 </body>
 </html>
